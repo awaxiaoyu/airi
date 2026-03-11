@@ -25,6 +25,14 @@ docs:
   'expand': 展开
   'collapse': 折叠
   'vision-see-screen': 让 AIRI 看屏幕
+
+vision:
+  screen-analysis: 屏幕分析
+  analyzing: 正在分析屏幕...
+  'ui-elements': UI 元素
+  suggestions: 建议操作
+  'no-analysis': 无法分析
+
 notice:
   'fade-on-hover':
     title: 悬停淡出

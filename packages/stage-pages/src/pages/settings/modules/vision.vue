@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVisionModuleStore } from '@proj-airi/stage-ui/stores/modules/vision'
+import { useVisionModuleStore, VISION_MODEL_OPTIONS, VISION_PROVIDER_OPTIONS } from '@proj-airi/stage-ui/stores/modules/vision'
 import { Button, FieldCheckbox, FieldInput, FieldSelect } from '@proj-airi/ui'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -7,25 +7,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const visionStore = useVisionModuleStore()
 
-const providerOptions = [
-  { label: 'OpenAI', value: 'openai' },
-  { label: 'Ollama (本地)', value: 'ollama' },
-]
-
-const modelOptions = {
-  openai: [
-    { label: 'GPT-4o', value: 'gpt-4o' },
-    { label: 'GPT-4o Mini', value: 'gpt-4o-mini' },
-    { label: 'GPT-4 Turbo', value: 'gpt-4-turbo' },
-  ],
-  ollama: [
-    { label: 'llama3.2-vision', value: 'llama3.2-vision' },
-    { label: 'llama3.1-vision', value: 'llama3.1-vision' },
-    { label: 'qwen2-vl', value: 'qwen2-vl' },
-  ],
-}
-
-const currentModelOptions = computed(() => modelOptions[visionStore.model.provider] || [])
+const currentModelOptions = computed(() => VISION_MODEL_OPTIONS[visionStore.model.provider] || [])
 
 function saveSettings() {
   visionStore.saveSettings()
@@ -52,7 +34,7 @@ function saveSettings() {
       <FieldSelect
         v-model="visionStore.model.provider"
         :label="t('tamagotchi.settings.pages.modules.vision.provider')"
-        :options="providerOptions"
+        :options="VISION_PROVIDER_OPTIONS"
       />
 
       <FieldSelect

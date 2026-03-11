@@ -15,7 +15,7 @@ export interface VisionModelConfig {
   baseUrl?: string
 }
 
-const DEFAULT_PROMPT = `You are a screen analysis AI. Analyze this screenshot and provide:
+export const DEFAULT_PROMPT = `You are a screen analysis AI. Analyze this screenshot and provide:
 1. A brief description of what's on the screen (2-3 sentences)
 2. List of notable UI elements (buttons, text fields, icons) with their general positions
 3. Any suggestions for what actions might be useful
@@ -27,13 +27,16 @@ Respond in JSON format:
   "suggestions": ["Click submit button", "Fill in the form"]
 }`
 
-let currentConfig: VisionModelConfig = {
+export const DEFAULT_MODEL_CONFIG: VisionModelConfig = {
   provider: 'openai',
   modelName: 'gpt-4o',
 }
 
-export async function analyzeScreenWithAI(imageBase64: string, prompt?: string): Promise<VisionAnalysisResult> {
-  const config = currentConfig
+export async function analyzeScreenWithAI(
+  imageBase64: string,
+  config: VisionModelConfig = DEFAULT_MODEL_CONFIG,
+  prompt?: string,
+): Promise<VisionAnalysisResult> {
 
   const imageUrl = `data:image/png;base64,${imageBase64}`
 
@@ -100,10 +103,9 @@ export async function analyzeScreenWithAI(imageBase64: string, prompt?: string):
   }
 }
 
-export function setVisionModelConfig(config: Partial<VisionModelConfig>): void {
-  currentConfig = { ...currentConfig, ...config }
+export function setVisionModelConfig(_config: Partial<VisionModelConfig>): void {
 }
 
 export function getVisionModelConfig(): VisionModelConfig {
-  return { ...currentConfig }
+  return { ...DEFAULT_MODEL_CONFIG }
 }

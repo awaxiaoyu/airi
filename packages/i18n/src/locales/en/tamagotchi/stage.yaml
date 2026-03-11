@@ -26,6 +26,13 @@ docs:
   'collapse': Collapse
   'vision-see-screen': Let AIRI see screen
 
+vision:
+  screen-analysis: Screen Analysis
+  analyzing: Analyzing screen...
+  'ui-elements': UI Elements
+  suggestions: Suggestions
+  'no-analysis': No analysis available
+
 notice:
   'fade-on-hover':
     title: Fade on Hover
